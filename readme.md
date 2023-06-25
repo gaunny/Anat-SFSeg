@@ -1,1 +1,1 @@
-the code for Anat-SFSeg
+the code for Anat-SFSeg: Anatomy-guided superficial white matter fiber segmentation
