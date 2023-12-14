@@ -40,12 +40,12 @@ for i in range(len(vtk_all_files)):
         indices = vtk.vtkIdList()
         inpd.GetLines().GetNextCell(indices)
         point_all = None
-        for i in range(indices.GetNumberOfIds()):  #point
+        for n in range(indices.GetNumberOfIds()):  #point
             
             point = inpoints.GetPoint(indices.GetId(i))
             point_array = np.array(point)  #(3,)
             # point_list.append(point)
-            if i == 0:
+            if n == 0:
                 point_array = point_array[np.newaxis,:]
                 point_all = point_array
             else:
@@ -88,8 +88,8 @@ for i in range(len(vtk_all_files)):
     
     point_ijk = np.rint(point_ijk).astype(np.int32)
     regions = []
-    for i in range(10000):
-        point_list = [(point_ijk[i,j,0], point_ijk[i,j,1], point_ijk[i,j,2]) for j in range(point_ijk.shape[1])]
+    for m in range(10000):
+        point_list = [(point_ijk[m,j,0], point_ijk[m,j,1], point_ijk[m,j,2]) for j in range(point_ijk.shape[1])]
         point_list = set(point_list)
         region = np.zeros((len_label_list,), dtype=int)
         for x, y, z in list(point_list):
@@ -100,7 +100,7 @@ for i in range(len(vtk_all_files)):
         regions.append(region)
         # print(len(regions[0]))
         x = np.vstack((region,label_list))
-        if i == 0:
+        if m == 0:
             x = x[np.newaxis,:]
             x_all = x
         else:
